@@ -1,15 +1,13 @@
-.LocationCont {
-}
-
 .LocationCont > h1 {
   margin: 0;
+  font-size: 18px;
+  padding: 5px;
   text-align: left;
-  color: #666;
 }
 
 .WeatherLocationCont {
-  width: 400px;
-  margin: 15px;
-  box-shadow: 10px 10px 42px -12px;
+  width: calc(100% - 10px);
+  min-width: 370px;
+  box-sizing: border-box;
   padding: 10px;
 }
