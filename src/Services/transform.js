@@ -34,7 +34,7 @@ const transformTemperature = kelvinTemp =>
       .toFixed(2)
   );
 
-const transformWeather = weather_data => {
+export const transformWeather = weather_data => {
   const {
     main: { humidity, temp },
     weather,
@@ -48,5 +48,3 @@ const transformWeather = weather_data => {
     wind: `${speed} m/s`
   };
 };
-
-export default transformWeather;
