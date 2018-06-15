@@ -1,0 +1,9 @@
+.forecastItem {
+  margin-bottom: 15px;
+}
+.forecastItem > h3 {
+  margin: 0;
+  font-size: 18px;
+  padding: 5px;
+  text-align: left;
+}
