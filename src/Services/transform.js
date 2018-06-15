@@ -1,4 +1,6 @@
 import convert from "convert-units";
+import moment from "moment";
+import "moment/locale/es";
 import {
   CLOUDY,
   SUN,
@@ -47,4 +49,26 @@ export const transformWeather = weather_data => {
     weatherState: getWeatherState(weather),
     wind: `${speed} m/s`
   };
+};
+
+export const transformForecast = weather_data => {
+  const { list } = weather_data;
+
+  return list
+    .filter(item => {
+      const hour = moment
+        .unix(item.dt)
+        .utc()
+        .hour();
+
+      return hour === 6 || hour === 12 || hour === 18;
+    })
+    .map(item => ({
+      weekDay: moment.unix(item.dt).format("ddd"),
+      hour: moment
+        .unix(item.dt)
+        .utc()
+        .hour(),
+      data: transformWeather(item)
+    }));
 };
