@@ -2,6 +2,7 @@
   margin-top: 10px;
   height: calc(100vh - 64px - 10px);
   width: 100%;
+  overflow-y: scroll;
 }
 .detail > h1 {
   margin: 0;
@@ -9,4 +10,5 @@
   width: 100%;
   text-align: center;
   color: #ff6a00;
+  font-size: 24px;
 }
