@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 import LocationList from "./Components/LocationList/LocationList";
 import ForecastExtended from "./Components/ForecastExtended/ForecastExtended";
-
+import "./styles.css";
 const cities = [
   "Buenos aires, ar",
   "Caracas, ve",
@@ -26,10 +26,11 @@ class App extends Component {
   }
 
   onSelectedLocation = city => {
-    console.log(city);
     this.setState({ city });
   };
+
   render() {
+    const { city } = this.state;
     return (
       <Grid>
         <Row>
@@ -51,7 +52,7 @@ class App extends Component {
             />
           </Col>
           <Col xs={12} md={6}>
-            <ForecastExtended city={this.state.city} />
+            <ForecastExtended city={city} />
           </Col>
         </Row>
       </Grid>
