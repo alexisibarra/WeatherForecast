@@ -4,11 +4,9 @@ import { CircularProgress, Paper } from "@material-ui/core";
 
 import Location from "./Location/Location";
 import WeatherData from "./WeatherData/WeatherData";
-import transformWeather from "../../Services/transformWeather";
+import { transformWeather } from "../../Services/transform";
 import "./styles.css";
-
-const api_key = "0f4d249845c66f2ec8374d424a71b341";
-const url = "http://api.openweathermap.org/data/2.5/weather";
+import { getWeatherByCity } from "../../Services/api";
 
 class WeatherLocation extends Component {
   constructor({ city }) {
@@ -21,9 +19,8 @@ class WeatherLocation extends Component {
 
   getWeatherInfo = () => {
     const { city } = this.state;
-    const api_weather = `${url}?q=${city}&appid=${api_key}`;
 
-    fetch(api_weather)
+    getWeatherByCity(city)
       .then(data => data.json())
       .then(weather_data => {
         const data = transformWeather(weather_data);
