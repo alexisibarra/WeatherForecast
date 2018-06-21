@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Col, Row } from "react-flexbox-grid";
-import { createStore } from "redux";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,7 +11,7 @@ import LocationList from "./Components/LocationList/LocationList";
 import ForecastExtended from "./Components/ForecastExtended/ForecastExtended";
 import "./styles.css";
 
-import { setCity } from "./actions";
+import { setCity } from "./actions/actions";
 
 const cities = [
   "Buenos aires, ar",
@@ -20,9 +21,6 @@ const cities = [
   "Washington",
   "Barcelona"
 ];
-
-const store = createStore(() => {},
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +33,7 @@ class App extends Component {
   onSelectedLocation = city => {
     this.setState({ city });
 
-    store.dispatch(setCity(city));
+    this.props.setCity(city);
   };
 
   render() {
@@ -69,4 +67,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mD = dispatch => ({
+  setCity: value => dispatch(setCity(value))
+});
+
+App.propTypes = {
+  setCity: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  mD
+)(App);
