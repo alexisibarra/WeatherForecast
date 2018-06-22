@@ -28,9 +28,7 @@ class ForecastExtended extends Component {
     return <h3>Cargando pronóstico extendido...</h3>;
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { city } = nextProps;
-
+  getForecast = city => {
     getForecast5(city)
       .then(data => data.json())
       .then(weather_data => {
@@ -40,6 +38,16 @@ class ForecastExtended extends Component {
       .catch(err => {
         console.log("error: ", err);
       });
+  };
+
+  componentWillMount() {
+    this.getForecast(this.props.city);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { city } = nextProps;
+
+    this.getForecast(city);
   }
 
   render() {
