@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Grid, Col, Row } from "react-flexbox-grid";
 
 import AppBar from "@material-ui/core/AppBar";
