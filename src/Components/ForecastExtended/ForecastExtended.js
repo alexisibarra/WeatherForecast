@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import "./styles.css";
-import { getForecast5 } from "../../Services/api";
-import { transformForecast } from "../../Services/transform";
 import ForecastItem from "../ForecastItem/ForecastItem";
 
 class ForecastExtended extends Component {
@@ -28,26 +26,12 @@ class ForecastExtended extends Component {
     return <h3>Cargando pronóstico extendido...</h3>;
   }
 
-  getForecast = city => {
-    getForecast5(city)
-      .then(data => data.json())
-      .then(weather_data => {
-        const forecastData = transformForecast(weather_data);
-        this.setState({ forecastData });
-      })
-      .catch(err => {
-        console.log("error: ", err);
-      });
-  };
-
   componentWillMount() {
-    this.getForecast(this.props.city);
+    // this.getForecast(this.props.city);
   }
 
   componentWillReceiveProps(nextProps) {
     const { city } = nextProps;
-
-    this.getForecast(city);
   }
 
   render() {
