@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCity } from "../actions/actions";
+import { setSelectedCity } from "../actions/actions";
 
 import LocationList from "../Components/LocationList/LocationList";
 
@@ -10,10 +10,18 @@ class LocationListContainer extends Component {
     this.props.setCity(city);
   };
   render() {
+    const cities = [
+      "Buenos aires, ar",
+      "Caracas, ve",
+      "Bogota, co",
+      "Santiago, cl",
+      "Washington",
+      "Barcelona"
+    ];
     return (
       <div>
         <LocationList
-          cities={this.props.cities}
+          cities={cities}
           onSelectedLocation={this.onSelectedLocation}
         />
       </div>
@@ -23,14 +31,14 @@ class LocationListContainer extends Component {
 
 LocationListContainer.propTypes = {
   setCity: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired
+  cities: PropTypes.object.isRequired
 };
 
 const mS = state => ({
   cities: state.cities
 });
 const mD = dispatch => ({
-  setCity: value => dispatch(setCity(value))
+  setCity: value => dispatch(setSelectedCity(value))
 });
 
 export default connect(
