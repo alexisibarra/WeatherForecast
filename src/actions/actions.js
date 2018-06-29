@@ -22,6 +22,4 @@ export const setSelectedCity = payload => dispatch => {
     .catch(err => {
       console.log("error: ", err);
     });
-
-  console.log("hola");
 };
