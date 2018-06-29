@@ -1,5 +1,13 @@
 import { combineReducers } from "redux";
-import { cities } from "./cities";
+import {
+  cities,
+  getForecastDataFromCities as _getForecastDataFromCities
+} from "./cities";
 import { city } from "./city";
 
 export default combineReducers({ cities, city });
+
+export const getForecastDataFromCities = state =>
+  _getForecastDataFromCities(state);
+
+export const getCity = state => state.city;
