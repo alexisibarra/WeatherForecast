@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import "./styles.css";
 import LocationListContainer from "./containers/LocationListContainer";
 import ForecastExtendedContainer from "./containers/ForecastExtendedContainer";
+import { cities } from "./Constants/cities";
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
       </Row>
       <Row>
         <Col xs={12} md={6}>
-          <LocationListContainer />
+          <LocationListContainer cities={cities} />
         </Col>
         <Col xs={12} md={6}>
           <ForecastExtendedContainer />
