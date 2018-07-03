@@ -9,16 +9,14 @@ const LocationList = ({ cities, onSelectedLocation }) => {
   };
 
   const citiesToComponent = cities => {
-    return cities.map(city => {
-      return (
-        <WeatherLocation
-          key={city.key}
-          city={city.name}
-          onWeatherLocationClick={() => handleWeatherLocationClick(city.name)}
-          data={city.data}
-        />
-      );
-    });
+    return cities.map(({ key, name, data }) => (
+      <WeatherLocation
+        key={key}
+        city={name}
+        onWeatherLocationClick={() => handleWeatherLocationClick(name)}
+        data={data}
+      />
+    ));
   };
 
   return <div className="LocationList">{citiesToComponent(cities)}</div>;
