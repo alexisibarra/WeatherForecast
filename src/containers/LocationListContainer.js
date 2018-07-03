@@ -8,23 +8,21 @@ import LocationList from "../Components/LocationList/LocationList";
 
 class LocationListContainer extends Component {
   componentDidMount() {
-    const { setWeather, cities, setCity, city } = this.props;
+    const { setWeather, cities, setSelectedCity, city } = this.props;
 
     setWeather(cities);
-    setCity(city);
+    setSelectedCity(city);
   }
 
   onSelectedLocation = city => {
-    this.props.setCity(city);
+    this.props.setSelectedCity(city);
   };
   render() {
     return (
-      <div>
-        <LocationList
-          cities={this.props.citiesWeather}
-          onSelectedLocation={this.onSelectedLocation}
-        />
-      </div>
+      <LocationList
+        cities={this.props.citiesWeather}
+        onSelectedLocation={this.onSelectedLocation}
+      />
     );
   }
 }
@@ -33,7 +31,7 @@ LocationListContainer.propTypes = {
   setWeather: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired,
   citiesWeather: PropTypes.array,
-  setCity: PropTypes.func.isRequired,
+  setSelectedCity: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired
 };
 
@@ -41,10 +39,10 @@ const mS = state => ({
   citiesWeather: getWeatherCities(state),
   city: getCity(state)
 });
-const mD = dispatch => ({
-  setCity: value => dispatch(setSelectedCity(value)),
-  setWeather: cities => dispatch(setWeather(cities))
-});
+const mD = {
+  setSelectedCity,
+  setWeather
+};
 
 export default connect(
   mS,
